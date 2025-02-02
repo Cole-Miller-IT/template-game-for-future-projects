@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_nat41"]
 [ext_resource type="Shader" path="res://Shaders/hurt.gdshader" id="2_3dy6s"]
 [ext_resource type="Script" path="res://Scenes/StateMachine/Finite State Machine.gd" id="2_ft4ic"]
-[ext_resource type="Texture2D" uid="uid://dweafasm4b2rh" path="res://icon.svg" id="2_t3lte"]
+[ext_resource type="Texture2D" uid="uid://b0fptlfh0ipby" path="res://icon.svg" id="2_t3lte"]
 [ext_resource type="Script" path="res://Scenes/Player/MoveStates/idle.gd" id="3_qkui0"]
 [ext_resource type="Script" path="res://Scenes/Player/ActionStates/idle_action.gd" id="4_s1m6m"]
 [ext_resource type="Script" path="res://Scenes/Player/MoveStates/Walk.gd" id="5_8l2vv"]
