@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwjprrq0b0rsb"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy_base.gd" id="1_3qtj7"]
+[ext_resource type="Texture2D" uid="uid://bqc5gwyelqe7n" path="res://Assets/Images/Bush.png" id="2_22ou5"]
+[ext_resource type="PackedScene" uid="uid://doqtjwyne5dbw" path="res://Scenes/HitboxAndHurtbox/hurtbox.tscn" id="3_x0r8h"]
+[ext_resource type="PackedScene" uid="uid://gy0wep6lq3su" path="res://Scenes/HitboxAndHurtbox/hitbox.tscn" id="4_v38y8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etjs6"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5lt"]
+size = Vector2(32, 20)
+
+[node name="EnemyBase" type="CharacterBody2D"]
+script = ExtResource("1_3qtj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_22ou5")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_x0r8h")]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_etjs6")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_v38y8")]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_nh5lt")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]
+[editable path="Hitbox"]

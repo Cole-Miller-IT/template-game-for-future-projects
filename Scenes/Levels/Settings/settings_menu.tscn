@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b4bgplbbny2rt"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Graphics" type="TabBar" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Graphics"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 617.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Setting 1" type="HBoxContainer" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Setting 1"]
+layout_mode = 2
+text = "Setting 1111111111111111111"
+placeholder_text = "22222222222"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Setting 1"]
+layout_mode = 2
+
+[node name="Setting 2" type="HBoxContainer" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Setting 2"]
+layout_mode = 2
+text = "Setting 2"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/TabContainer/Graphics/MarginContainer/VBoxContainer/Setting 2"]
+layout_mode = 2
+
+[node name="Audio" type="TabBar" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1

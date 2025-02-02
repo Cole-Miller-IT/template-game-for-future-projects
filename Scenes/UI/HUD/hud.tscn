@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpuyqxjrgojdi"]
+
+[ext_resource type="Script" path="res://Scenes/UI/HUD/hud.gd" id="1_dl8mh"]
+[ext_resource type="Texture2D" uid="uid://c7vmhysdtlgg2" path="res://Assets/Images/HealthBar/Under.png" id="1_kr0iv"]
+[ext_resource type="Texture2D" uid="uid://vwm63d0xeay8" path="res://Assets/Images/HealthBar/Over.png" id="2_f3jjf"]
+[ext_resource type="Texture2D" uid="uid://c3ekcyqcqnlkt" path="res://Assets/Images/HealthBar/Progress.png" id="3_owcrr"]
+[ext_resource type="Texture2D" uid="uid://daoehsxvg7jti" path="res://Assets/Images/GoldCoins.png" id="4_bowi0"]
+[ext_resource type="Texture2D" uid="uid://b8gwjtp7ytu2w" path="res://Assets/Images/Inventory/InvEmptyIcon.png" id="5_w3mv8"]
+
+[node name="HUD" type="VBoxContainer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_dl8mh")
+
+[node name="Top HUD" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top HUD"]
+layout_mode = 2
+
+[node name="Bars" type="VBoxContainer" parent="Top HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HP" type="HBoxContainer" parent="Top HUD/HBoxContainer/Bars"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="Top HUD/HBoxContainer/Bars/HP"]
+layout_mode = 2
+text = "Health"
+
+[node name="Value" type="Label" parent="Top HUD/HBoxContainer/Bars/HP"]
+layout_mode = 2
+text = "50
+"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Top HUD/HBoxContainer/Bars/HP"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("1_kr0iv")
+texture_over = ExtResource("2_f3jjf")
+texture_progress = ExtResource("3_owcrr")
+tint_progress = Color(0.133333, 1, 0.129412, 1)
+
+[node name="Energy" type="HBoxContainer" parent="Top HUD/HBoxContainer/Bars"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="Top HUD/HBoxContainer/Bars/Energy"]
+layout_mode = 2
+text = "Energy"
+
+[node name="Value" type="Label" parent="Top HUD/HBoxContainer/Bars/Energy"]
+layout_mode = 2
+text = "50
+"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Top HUD/HBoxContainer/Bars/Energy"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("1_kr0iv")
+texture_over = ExtResource("2_f3jjf")
+texture_progress = ExtResource("3_owcrr")
+tint_progress = Color(1, 1, 0.129412, 1)
+
+[node name="Counters" type="HBoxContainer" parent="Top HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top HUD/HBoxContainer/Counters"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="Top HUD/HBoxContainer/Counters/HBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="Top HUD/HBoxContainer/Counters/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_bowi0")
+expand_mode = 2
+
+[node name="Empty Spacing" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HotBar" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HotBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot1" type="Button" parent="HotBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+icon = ExtResource("5_w3mv8")
+
+[node name="Slot2" type="Button" parent="HotBar/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_bowi0")
+
+[node name="Slot3" type="Button" parent="HotBar/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_bowi0")
+
+[node name="Slot4" type="Button" parent="HotBar/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_bowi0")
+
+[node name="Slot5" type="Button" parent="HotBar/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_bowi0")
+
+[connection signal="pressed" from="HotBar/HBoxContainer/Slot1" to="." method="_on_slot_1_pressed"]
+[connection signal="pressed" from="HotBar/HBoxContainer/Slot2" to="." method="_on_slot_2_pressed"]
+[connection signal="pressed" from="HotBar/HBoxContainer/Slot3" to="." method="_on_slot_3_pressed"]
+[connection signal="pressed" from="HotBar/HBoxContainer/Slot4" to="." method="_on_slot_4_pressed"]
+[connection signal="pressed" from="HotBar/HBoxContainer/Slot5" to="." method="_on_slot_5_pressed"]

@@ -1,0 +1,104 @@
+[gd_scene load_steps=18 format=3 uid="uid://duer6vi3o38eh"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_nat41"]
+[ext_resource type="Shader" path="res://Shaders/hurt.gdshader" id="2_3dy6s"]
+[ext_resource type="Script" path="res://Scenes/StateMachine/Finite State Machine.gd" id="2_ft4ic"]
+[ext_resource type="Texture2D" uid="uid://dweafasm4b2rh" path="res://icon.svg" id="2_t3lte"]
+[ext_resource type="Script" path="res://Scenes/Player/MoveStates/idle.gd" id="3_qkui0"]
+[ext_resource type="Script" path="res://Scenes/Player/ActionStates/idle_action.gd" id="4_s1m6m"]
+[ext_resource type="Script" path="res://Scenes/Player/MoveStates/Walk.gd" id="5_8l2vv"]
+[ext_resource type="Script" path="res://Scenes/Player/MoveStates/die.gd" id="6_514mp"]
+[ext_resource type="Script" path="res://Scenes/Player/ActionStates/light_attack.gd" id="8_bfer7"]
+[ext_resource type="Script" path="res://Scenes/Player/ActionStates/die_action.gd" id="9_0oyhd"]
+[ext_resource type="PackedScene" uid="uid://doqtjwyne5dbw" path="res://Scenes/HitboxAndHurtbox/hurtbox.tscn" id="10_x5ps0"]
+[ext_resource type="PackedScene" uid="uid://gy0wep6lq3su" path="res://Scenes/HitboxAndHurtbox/hitbox.tscn" id="11_m6pjx"]
+[ext_resource type="Script" path="res://Scenes/Player/Debug/States.gd" id="12_4mh53"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20kni"]
+shader = ExtResource("2_3dy6s")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uijew"]
+radius = 64.0
+height = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h86yv"]
+radius = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wq3og"]
+size = Vector2(66, 98)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_nat41")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_20kni")
+texture = ExtResource("2_t3lte")
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_ft4ic")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("3_qkui0")
+walk_state = NodePath("../Walk")
+
+[node name="Walk" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_8l2vv")
+idle_state = NodePath("../Idle")
+
+[node name="Die" type="Node" parent="MovementStateMachine"]
+script = ExtResource("6_514mp")
+
+[node name="ActionStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_ft4ic")
+starting_state = NodePath("IdleAction")
+
+[node name="IdleAction" type="Node" parent="ActionStateMachine" node_paths=PackedStringArray("light_attack_state", "die_state")]
+script = ExtResource("4_s1m6m")
+light_attack_state = NodePath("../LightAttack")
+die_state = NodePath("../DieAction")
+
+[node name="LightAttack" type="Node" parent="ActionStateMachine" node_paths=PackedStringArray("idle_state", "die_state")]
+script = ExtResource("8_bfer7")
+idle_state = NodePath("../IdleAction")
+die_state = NodePath("../DieAction")
+
+[node name="DieAction" type="Node" parent="ActionStateMachine"]
+script = ExtResource("9_0oyhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uijew")
+
+[node name="HurtBox" parent="." instance=ExtResource("10_x5ps0")]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_h86yv")
+
+[node name="Hitbox" parent="." instance=ExtResource("11_m6pjx")]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_wq3og")
+
+[node name="StateDebug" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -73.0
+script = ExtResource("12_4mh53")
+
+[node name="HurtFlashTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="timeout" from="HurtFlashTimer" to="." method="_on_hurt_flash_timer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="Hitbox"]
