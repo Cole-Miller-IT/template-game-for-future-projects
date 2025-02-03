@@ -15,4 +15,4 @@ func _on_start_pressed():
 
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	pass
