@@ -15,9 +15,10 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 
 [node name="Graphics" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -217,6 +218,38 @@ value = 50.0
 layout_mode = 2
 text = "100 %"
 
+[node name="Keybinds" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 617.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="MoveLeft" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft"]
+layout_mode = 2
+text = "Move Left"
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RebindKey" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -250,6 +283,7 @@ text = "Cancel Settings
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 2/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 3/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 4/HSlider" to="." method="_on_h_slider_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey" to="." method="_on_rebind_key_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Defaults" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

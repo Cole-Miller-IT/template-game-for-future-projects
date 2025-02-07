@@ -11,8 +11,12 @@ func _on_quit_pressed():
 
 
 func _on_start_pressed():
+	$ButtonSound.play()
+	await $ButtonSound.finished
 	get_tree().change_scene_to_file("res://Scenes/Levels/World/world.tscn")
 
 
 func _on_options_pressed():
-	pass
+	$ButtonSound.play()
+	await $ButtonSound.finished
+	get_tree().change_scene_to_file("res://Scenes/Levels/Settings/settings_menu.tscn")
