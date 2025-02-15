@@ -9,3 +9,6 @@ const LIGHT_ATTACK : String = "lightAttack"
 
 var defaultMoveLeft = "a"
 var defaultMoveRight = "d"
+var defaultMoveUp = "w"
+var defaultMoveDown = "s"
+#var defaultLightAttack = "LMB"

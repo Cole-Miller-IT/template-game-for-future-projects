@@ -246,7 +246,67 @@ text = "Move Left"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RebindKey" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft"]
+[node name="RebindKey1" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MoveRight" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight"]
+layout_mode = 2
+text = "Move Right"
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RebindKey1" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MoveUp" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp"]
+layout_mode = 2
+text = "Move Up"
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RebindKey1" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MoveDown" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RebindKey1" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LightAttack" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack"]
+layout_mode = 2
+text = "Light Attack"
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RebindKey1" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
@@ -283,7 +343,11 @@ text = "Cancel Settings
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 2/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 3/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 4/HSlider" to="." method="_on_h_slider_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey1" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight/RebindKey1" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp/RebindKey1" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown/RebindKey1" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack/RebindKey1" to="." method="_on_rebind_key_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Defaults" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
