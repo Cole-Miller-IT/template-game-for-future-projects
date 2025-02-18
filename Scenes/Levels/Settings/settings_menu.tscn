@@ -343,7 +343,7 @@ text = "Cancel Settings
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 2/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 3/HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer/Setting 4/HSlider" to="." method="_on_h_slider_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey1" to="." method="_on_rebind_key_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey1" to="." method="_on_rebind_key_1_pressed" binds= ["moveLeft"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight/RebindKey1" to="." method="_on_rebind_key_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp/RebindKey1" to="." method="_on_rebind_key_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown/RebindKey1" to="." method="_on_rebind_key_pressed"]
