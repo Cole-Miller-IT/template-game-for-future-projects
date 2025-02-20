@@ -12,3 +12,7 @@ var defaultMoveRight = "d"
 var defaultMoveUp = "w"
 var defaultMoveDown = "s"
 #var defaultLightAttack = "LMB"
+
+
+func saveData(data):
+	ResourceSaver.save(data, "res://Scenes/Resources/Settings/keybinds.tres")

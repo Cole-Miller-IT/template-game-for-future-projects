@@ -10,7 +10,7 @@ var rebindKeyToChange = ""
 func _ready():
 	#Read hotkey resource data and assign the buttons the correct keys to display on the rebind button
 	if hotkeys:
-		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey1.text = hotkeys.defaultMoveLeft
+		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.defaultMoveLeft
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight/RebindKey1.text = hotkeys.defaultMoveRight
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp/RebindKey1.text = hotkeys.defaultMoveUp
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown/RebindKey1.text = hotkeys.defaultMoveDown
@@ -37,45 +37,39 @@ func _on_cancel_pressed():
 
 
 ###############REBINDING HOTKEYS#######################
-func _on_rebind_key_pressed(value):
-	#print("Awaiting key press for hotkey " + str(value))
-	
-	#toggle rebind mode
-	#rebindMode = true
-	
-	#handle next input event through _unhandled_input() function
-	pass
-	
 func rebind(eventRecieved):
-	#print(eventRecieved)
+	print("before changes: " + hotkeys.defaultMoveLeft)
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
-		#this
-		#work to change the key code to the key value (ie 71 to g)
-		hotkeys.defaultMoveLeft = str(eventRecieved.keycode)
-		print(str(eventRecieved.keycode))
+		hotkeys.defaultMoveLeft = eventRecieved.as_text_key_label().to_lower()
+		#print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
 		
 	else:
 		print("hotkey rebind not implemented yet")
 	
+	
+	#save the key for next game boot up
+	hotkeys.saveData(hotkeys)
+	
 	#
 	#make this a variable string for all hotkeys
+	#Update text on the settings menu
 	#
-	$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey1.text = str(eventRecieved)
+	#var settingString = "MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/" + rebindKeyToChange + "/RebindKey"
+	
+	$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = eventRecieved.as_text_key_label().to_lower()
 	
 	rebindMode = false
 	
+	print("after changes: " + hotkeys.defaultMoveLeft)
+	
 	
 func _unhandled_input(event):
-	#print(str(event))
 	if rebindMode == true:
-		#print("changing")
 		rebind(event)
 	
-	
-
 
 func _on_rebind_key_1_pressed(extra_arg_0):
-	print(extra_arg_0)
+	#print(extra_arg_0)
 	rebindMode = true
 	rebindKeyToChange = extra_arg_0
