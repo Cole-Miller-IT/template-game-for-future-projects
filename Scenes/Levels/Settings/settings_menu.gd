@@ -4,12 +4,13 @@ extends CanvasLayer
 var rebindMode = false
 var rebindKeyToChange = ""
 
-@onready var hotkeys = load("res://Scenes/Resources/Settings/keybinds.tres")
+@onready var hotkeys = Keybinds.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Read hotkey resource data and assign the buttons the correct keys to display on the rebind button
 	if hotkeys:
+		hotkeys = ResourceLoader.load("res://Scenes/Resources/Settings/keybinds.tres")
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.defaultMoveLeft
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight/RebindKey1.text = hotkeys.defaultMoveRight
 		$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp/RebindKey1.text = hotkeys.defaultMoveUp
@@ -42,25 +43,28 @@ func rebind(eventRecieved):
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
 		hotkeys.defaultMoveLeft = eventRecieved.as_text_key_label().to_lower()
-		#print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
+		print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
 		
 	else:
 		print("hotkey rebind not implemented yet")
 	
-	
+	#func rebind(action, eventReceived):
+	#print("Before change: " + hotkeys.get_action_key(action))
+	#hotkeys.set_action_key(action, eventReceived.as_text_key_label().to_lower())
+	#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer.get_node(action + "/RebindKey").text = hotkeys.get_action_key(action)
+	#ResourceSaver.save(hotkeys, "res://Scenes/Resources/Settings/keybinds.tres")
+	#print("After change: " + hotkeys.get_action_key(action))
+
 	#save the key for next game boot up
-	hotkeys.saveData(hotkeys)
+	ResourceSaver.save(hotkeys, "res://Scenes/Resources/Settings/keybinds.tres")
 	
-	#
-	#make this a variable string for all hotkeys
+	
 	#Update text on the settings menu
-	#
-	#var settingString = "MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/" + rebindKeyToChange + "/RebindKey"
-	
 	$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = eventRecieved.as_text_key_label().to_lower()
 	
 	rebindMode = false
 	
+	#hotkeys = load("res://Scenes/Resources/Settings/keybinds.tres")
 	print("after changes: " + hotkeys.defaultMoveLeft)
 	
 	

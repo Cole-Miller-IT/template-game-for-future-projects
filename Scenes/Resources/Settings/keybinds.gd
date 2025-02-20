@@ -7,12 +7,8 @@ const MOVE_UP : String = "up"
 const MOVE_DOWN : String = "down"
 const LIGHT_ATTACK : String = "lightAttack"
 
-var defaultMoveLeft = "a"
+@export var defaultMoveLeft = "a"
 var defaultMoveRight = "d"
 var defaultMoveUp = "w"
 var defaultMoveDown = "s"
 #var defaultLightAttack = "LMB"
-
-
-func saveData(data):
-	ResourceSaver.save(data, "res://Scenes/Resources/Settings/keybinds.tres")
