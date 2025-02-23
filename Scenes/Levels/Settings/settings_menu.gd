@@ -18,6 +18,8 @@ func _ready():
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack/RebindKey1.text = hotkeys.defaultLightAttack
 	
 		print("loaded hotkeys succesfully")
+		
+	hotkeys.applyStoredKeybinds()
 
 
 func _on_check_button_toggled(toggled_on):
@@ -39,11 +41,18 @@ func _on_cancel_pressed():
 
 ###############REBINDING HOTKEYS#######################
 func rebind(eventRecieved):
-	print("before changes: " + hotkeys.defaultMoveLeft)
+	#print("before changes: " + hotkeys.defaultMoveLeft)
+	print("Left map events before: " + str(InputMap.action_get_events("left")))
+	
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
 		hotkeys.defaultMoveLeft = eventRecieved.as_text_key_label().to_lower()
-		print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
+		#print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
+		
+		InputMap.action_erase_events("left")
+		InputMap.action_add_event("left", eventRecieved)
+		
+		print("Left map events after: " + str(InputMap.action_get_events("left")))
 		
 	else:
 		print("hotkey rebind not implemented yet")
@@ -65,7 +74,7 @@ func rebind(eventRecieved):
 	rebindMode = false
 	
 	#hotkeys = load("res://Scenes/Resources/Settings/keybinds.tres")
-	print("after changes: " + hotkeys.defaultMoveLeft)
+	#print("after changes: " + hotkeys.defaultMoveLeft)
 	
 	
 func _unhandled_input(event):
