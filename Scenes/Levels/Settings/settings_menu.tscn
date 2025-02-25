@@ -5,6 +5,11 @@
 [node name="SettingsMenu" type="CanvasLayer"]
 script = ExtResource("1_cqthj")
 
+[node name="OverlayDarken" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.298039)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0

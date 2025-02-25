@@ -3,6 +3,8 @@ extends State
 @export var light_attack_state: State
 @export var die_state: State
 
+signal settingsMenu
+
 func enter() -> void:
 	#parent.animations.play(animation_name)
 	super()
@@ -14,6 +16,9 @@ func exit() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('lightAttack'):
 		return light_attack_state
+		
+	if Input.is_action_just_pressed("settingsMenu"):
+		settingsMenu.emit()
 		
 	
 	return null

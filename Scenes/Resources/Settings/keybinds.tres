@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_821vt")
-defaultMoveLeft = "t"
+defaultMoveLeft = "a"

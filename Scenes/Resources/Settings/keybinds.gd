@@ -19,8 +19,9 @@ var defaultMoveDown = "s"
 func applyStoredKeybinds():
 	#for all keybinds #make dict to hold them		 #####store the keybinds as events
 	#update input map
-	InputMap.action_erase_events("left")
-	var tempEvent = InputEventKey.new()
-	tempEvent.keycode = defaultMoveLeft #
-	InputMap.action_add_event("left", tempEvent)
+	#InputMap.action_erase_events("left")
+	#var tempEvent = InputEventKey.new()
+	#tempEvent.keycode = defaultMoveLeft #
+	#InputMap.action_add_event("left", tempEvent)
+	pass
 	
