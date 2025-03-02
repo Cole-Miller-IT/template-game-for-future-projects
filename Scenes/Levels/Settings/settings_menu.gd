@@ -42,7 +42,7 @@ func _on_cancel_pressed():
 ###############REBINDING HOTKEYS#######################
 func rebind(eventRecieved):
 	#print("before changes: " + hotkeys.defaultMoveLeft)
-	print("Left map events before: " + str(InputMap.action_get_events("left")))
+	#print("Left map events before: " + str(InputMap.action_get_events("left")))
 	
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
@@ -52,29 +52,18 @@ func rebind(eventRecieved):
 		InputMap.action_erase_events("left")
 		InputMap.action_add_event("left", eventRecieved)
 		
-		print("Left map events after: " + str(InputMap.action_get_events("left")))
+		#print("Left map events after: " + str(InputMap.action_get_events("left")))
 		
 	else:
 		print("hotkey rebind not implemented yet")
-	
-	#func rebind(action, eventReceived):
-	#print("Before change: " + hotkeys.get_action_key(action))
-	#hotkeys.set_action_key(action, eventReceived.as_text_key_label().to_lower())
-	#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer.get_node(action + "/RebindKey").text = hotkeys.get_action_key(action)
-	#ResourceSaver.save(hotkeys, "res://Scenes/Resources/Settings/keybinds.tres")
-	#print("After change: " + hotkeys.get_action_key(action))
 
 	#save the key for next game boot up
 	ResourceSaver.save(hotkeys, "res://Scenes/Resources/Settings/keybinds.tres")
-	
 	
 	#Update text on the settings menu
 	$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = eventRecieved.as_text_key_label().to_lower()
 	
 	rebindMode = false
-	
-	#hotkeys = load("res://Scenes/Resources/Settings/keybinds.tres")
-	#print("after changes: " + hotkeys.defaultMoveLeft)
 	
 	
 func _unhandled_input(event):

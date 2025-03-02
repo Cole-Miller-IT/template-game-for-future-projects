@@ -2,26 +2,32 @@ class_name Keybinds
 extends Resource
 
 
-const MOVE_LEFT : String = "left"
-const MOVE_RIGHT : String = "right"
-const MOVE_UP : String = "up"
-const MOVE_DOWN : String = "down"
-const LIGHT_ATTACK : String = "lightAttack"
-
-@export var defaultMoveLeft = "a"
+@export var defaultMoveLeft: InputEventKey
 var defaultMoveRight = "d"
 var defaultMoveUp = "w"
 var defaultMoveDown = "s"
-#var defaultLightAttack = "LMB"
+var defaultLightAttack = "LMB"
+
+var keybindsDict = {"left": defaultMoveLeft, 
+					#"right": defaultMoveRight,
+					#"up": defaultMoveUp,
+					#"down": defaultMoveDown,
+					#"lightAttack": defaultLightAttack,
+					}
 	
 
 #Apply all the saved keybinds to the InputMap of the game
 func applyStoredKeybinds():
-	#for all keybinds #make dict to hold them		 #####store the keybinds as events
-	#update input map
-	#InputMap.action_erase_events("left")
 	#var tempEvent = InputEventKey.new()
-	#tempEvent.keycode = defaultMoveLeft #
-	#InputMap.action_add_event("left", tempEvent)
-	pass
+	for action in keybindsDict:
+		print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+		print("action: " + str(action))
+		InputMap.action_erase_events(action)
+		
+		
+		#tempEvent.keycode = keybindsDict[action]
+		#print("tempevent: ")
+		#print(tempEvent)
+		
+		InputMap.action_add_event(action, tempEvent)
 	
