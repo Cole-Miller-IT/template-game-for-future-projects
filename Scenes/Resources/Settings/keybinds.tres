@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/Resources/Settings/keybinds.gd" id="1_821vt"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_twu52"]
+[sub_resource type="InputEventKey" id="InputEventKey_ciao5"]
 device = -1
-keycode = 65
-unicode = 97
+keycode = 68
+unicode = 100
 
 [resource]
 script = ExtResource("1_821vt")
-defaultMoveLeft = SubResource("InputEventKey_twu52")
+defaultMoveLeft = "a"
+defaultMoveRight = SubResource("InputEventKey_ciao5")
