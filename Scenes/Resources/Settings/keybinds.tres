@@ -1,13 +1,10 @@
-[gd_resource type="Resource" script_class="Keybinds" load_steps=3 format=3 uid="uid://bi1j7p61hix3p"]
+[gd_resource type="Resource" script_class="Keybinds" load_steps=2 format=3 uid="uid://bi1j7p61hix3p"]
 
 [ext_resource type="Script" path="res://Scenes/Resources/Settings/keybinds.gd" id="1_821vt"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_ciao5"]
-device = -1
-keycode = 68
-unicode = 100
-
 [resource]
 script = ExtResource("1_821vt")
-defaultMoveLeft = "a"
-defaultMoveRight = SubResource("InputEventKey_ciao5")
+keybindMoveLeft = "A"
+keybindMoveRight = "D"
+keybindMoveUp = "W"
+keybindMoveDown = "S"

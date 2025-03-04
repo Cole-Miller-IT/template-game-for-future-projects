@@ -3,35 +3,36 @@ extends Resource
 
 
 ####### Make sure to set these in the inspector/editor #############
-@export var defaultMoveLeft: String = "KEY_A"
-@export var defaultMoveRight: String = "KEY_D"
-@export var defaultMoveUp: String = "KEY_W"
-@export var defaultMoveDown: String = "KEY_S"
+@export var keybindMoveLeft: String = "A"
+@export var keybindMoveRight: String = "D"
+@export var keybindMoveUp: String = "W"
+@export var keybindMoveDown: String = "S"
 #@export var defaultLightAttack = "LMB"
 
-var keybindsDict = {"left": defaultMoveLeft, 
-					"right": defaultMoveRight,
-					"up": defaultMoveUp,
-					"down": defaultMoveDown,
-					#"lightAttack": defaultLightAttack,
-					}
-	
+var keybindsDict = {}
 
-
-	
 
 #Apply all the saved keybinds to the InputMap of the game
 func applyStoredKeybinds():
+	keybindsDict = {"left": keybindMoveLeft, 
+					"right": keybindMoveRight,
+					"up": keybindMoveUp,
+					"down": keybindMoveDown,
+					#"lightAttack": defaultLightAttack,
+					}
+					
 	print(keybindsDict)
-	var tempEvent = InputEventKey.new()
 	for action in keybindsDict.keys():
-		print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-		print("action: " + str(action))
+		#print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+		#print("action: " + str(action))
 		InputMap.action_erase_events(action)
 		
-		#this
-		tempEvent.keycode = OS.get_keycode_string(int(keybindsDict[action]))
+		#Turn the event into the stored keybind by converting the char into the ascii int equivalent
+		var tempEvent = InputEventKey.new()
+		tempEvent.keycode = keybindsDict[action].unicode_at(0) #position 0
 		
-		print("key to rebind as: " + str(tempEvent))
+		#print("key to rebind as: " + str(tempEvent))
 		InputMap.action_add_event(action, tempEvent)
+		
+	print("Applied stored keybinds successfully")
 	

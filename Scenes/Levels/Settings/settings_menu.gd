@@ -11,6 +11,7 @@ func _ready():
 	#Read hotkey resource data and assign the buttons the correct keys to display on the rebind button
 	if hotkeys:
 		hotkeys = ResourceLoader.load("res://Scenes/Resources/Settings/keybinds.tres")
+		#print("loaded hotkeys succesfully")
 		
 		for action in hotkeys.keybindsDict:
 			#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.keybindsDict[action].as_text_key_label().to_lower()
@@ -24,7 +25,7 @@ func _ready():
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown/RebindKey1.text = hotkeys.defaultMoveDown
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/LightAttack/RebindKey1.text = hotkeys.defaultLightAttack
 	
-		print("loaded hotkeys succesfully")
+		
 		
 	hotkeys.applyStoredKeybinds()
 
@@ -53,8 +54,8 @@ func rebind(eventRecieved):
 	
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
-		hotkeys.defaultMoveLeft = eventRecieved.as_text_key_label().to_lower()
-		#print("keycode recieved for change " + eventRecieved.as_text_key_label().to_lower())
+		hotkeys.keybindMoveLeft = eventRecieved.as_text_key_label()
+		#print("keycode recieved for change " + eventRecieved.as_text_key_label())
 		
 		InputMap.action_erase_events("left")
 		InputMap.action_add_event("left", eventRecieved)
