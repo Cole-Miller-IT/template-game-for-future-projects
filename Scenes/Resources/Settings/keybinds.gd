@@ -14,6 +14,7 @@ var keybindsDict = {}
 
 #Apply all the saved keybinds to the InputMap of the game
 func applyStoredKeybinds():
+	#Put here so that the saved keybinds get reloaded to the dictionary
 	keybindsDict = {"left": keybindMoveLeft, 
 					"right": keybindMoveRight,
 					"up": keybindMoveUp,
@@ -21,7 +22,7 @@ func applyStoredKeybinds():
 					#"lightAttack": defaultLightAttack,
 					}
 					
-	print(keybindsDict)
+	print("Stored Keybinds: " + str(keybindsDict))
 	for action in keybindsDict.keys():
 		#print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 		#print("action: " + str(action))

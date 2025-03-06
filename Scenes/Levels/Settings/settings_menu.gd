@@ -11,7 +11,6 @@ func _ready():
 	#Read hotkey resource data and assign the buttons the correct keys to display on the rebind button
 	if hotkeys:
 		hotkeys = ResourceLoader.load("res://Scenes/Resources/Settings/keybinds.tres")
-		#print("loaded hotkeys succesfully")
 		
 		for action in hotkeys.keybindsDict:
 			#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.keybindsDict[action].as_text_key_label().to_lower()
@@ -19,7 +18,7 @@ func _ready():
 			pass
 		
 		#put in the for loop above later
-		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.keybindsDict["left"].as_text_key_label().to_lower()
+		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = hotkeys.keybindsDict["left"]
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveRight/RebindKey1.text = hotkeys.defaultMoveRight
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveUp/RebindKey1.text = hotkeys.defaultMoveUp
 		#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveDown/RebindKey1.text = hotkeys.defaultMoveDown
@@ -49,18 +48,25 @@ func _on_cancel_pressed():
 
 ###############REBINDING HOTKEYS#######################
 func rebind(eventRecieved):
-	#print("before changes: " + hotkeys.defaultMoveLeft)
-	#print("Left map events before: " + str(InputMap.action_get_events("left")))
-	
 	#rebind the key to the given key by the user
 	if rebindKeyToChange == "moveLeft":
-		hotkeys.keybindMoveLeft = eventRecieved.as_text_key_label()
-		#print("keycode recieved for change " + eventRecieved.as_text_key_label())
+		hotkeys.keybindMoveLeft = eventRecieved.as_text_key_label() #Change the stored hotkey to the new hotkey
+		setInputMapEvent("left", eventRecieved)
 		
-		InputMap.action_erase_events("left")
-		InputMap.action_add_event("left", eventRecieved)
+	elif rebindKeyToChange == "moveRight":
+		hotkeys.keybindMoveRight = eventRecieved.as_text_key_label() #Change the stored hotkey to the new hotkey
+		setInputMapEvent("right", eventRecieved)
 		
-		#print("Left map events after: " + str(InputMap.action_get_events("left")))
+	elif rebindKeyToChange == "moveUp":
+		hotkeys.keybindMoveUp = eventRecieved.as_text_key_label() #Change the stored hotkey to the new hotkey
+		setInputMapEvent("up", eventRecieved)
+		
+	elif rebindKeyToChange == "moveDown":
+		hotkeys.keybindMoveDown = eventRecieved.as_text_key_label() #Change the stored hotkey to the new hotkey
+		setInputMapEvent("down", eventRecieved)
+		
+	#elif rebindKeyToChange == "lightAttack":
+		
 		
 	else:
 		print("hotkey rebind not implemented yet")
@@ -68,10 +74,15 @@ func rebind(eventRecieved):
 	#save the key for next game boot up
 	ResourceSaver.save(hotkeys, "res://Scenes/Resources/Settings/keybinds.tres")
 	
-	#Update text on the settings menu
-	$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = eventRecieved.as_text_key_label().to_lower()
+	#Update text on the settings menu 	#####Make variable#########
+	#$MarginContainer/VBoxContainer/TabContainer/Keybinds/MarginContainer/VBoxContainer/MoveLeft/RebindKey.text = eventRecieved.as_text_key_label().to_lower()
 	
 	rebindMode = false
+	
+#Remove previous keybinds for the action and set a new keybind
+func setInputMapEvent(action:String, event:InputEvent):
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, event)
 	
 	
 func _unhandled_input(event):
